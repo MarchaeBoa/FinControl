@@ -377,7 +377,7 @@
   /* ─── AUTH PAGES ─── */
   #auth-login, #auth-register {
     background: var(--bg);
-    display:flex; min-height:100vh;
+    min-height:100vh;
   }
   .auth-left {
     flex:1; display:flex; flex-direction:column;
@@ -439,9 +439,9 @@
   .auth-switch a { color:var(--accent); text-decoration:none; cursor:pointer; }
 
   /* ─── DASHBOARD ─── */
-  #dashboard {
+  #dashboard-app {
     background: var(--bg);
-    display: flex; min-height:100vh;
+    min-height:100vh;
   }
 
   /* Sidebar */
@@ -820,8 +820,8 @@
   <nav>
     <div class="nav-logo" onclick="showPage('landing')">Fin<span>Control</span></div>
     <div class="nav-links">
-      <a onclick="scrollTo('.features-section')">Recursos</a>
-      <a onclick="scrollTo('.pricing-section')">Preços</a>
+      <a onclick="scrollToSection('.features-section')">Recursos</a>
+      <a onclick="scrollToSection('.pricing-section')">Preços</a>
       <a href="#">Blog</a>
       <a href="#">Suporte</a>
     </div>
@@ -1785,6 +1785,11 @@ const state = {
 };
 
 // ═══════════════════════════════ NAVIGATION ═══════════════════════════════
+function scrollToSection(selector) {
+  const el = document.querySelector(selector);
+  if (el) el.scrollIntoView({ behavior: 'smooth' });
+}
+
 function showPage(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById(id).classList.add('active');
