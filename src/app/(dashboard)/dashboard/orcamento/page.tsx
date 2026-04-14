@@ -12,7 +12,7 @@ import {
   CircleDollarSign,
 } from "lucide-react"
 import { Topbar } from "@/components/layout/topbar"
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { cn, formatCurrency } from "@/lib/utils"
 
