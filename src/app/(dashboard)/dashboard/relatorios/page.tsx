@@ -4,7 +4,6 @@ import { useState } from "react"
 import {
   ArrowUpRight,
   ArrowDownRight,
-  TrendingUp,
   PieChart,
   Download,
   FileText,
@@ -252,7 +251,6 @@ export default function RelatoriosPage() {
               <div className="relative mx-auto flex h-40 w-40 items-center justify-center">
                 <svg viewBox="0 0 100 100" className="h-full w-full -rotate-90">
                   {(() => {
-                    let offset = 0
                     const colors = [
                       "#7C5CFC",
                       "#FF6B35",
@@ -261,10 +259,15 @@ export default function RelatoriosPage() {
                       "#FF4444",
                       "#6B7280",
                     ]
+                    const circumference = 251.2
                     return categoryBreakdown.map((cat, idx) => {
-                      const strokeDash = (cat.pct / 100) * 251.2
-                      const gap = 251.2 - strokeDash
-                      const el = (
+                      const strokeDash = (cat.pct / 100) * circumference
+                      const gap = circumference - strokeDash
+                      const priorPct = categoryBreakdown
+                        .slice(0, idx)
+                        .reduce((acc, c) => acc + c.pct, 0)
+                      const offset = (priorPct / 100) * circumference
+                      return (
                         <circle
                           key={cat.name}
                           cx="50"
@@ -278,8 +281,6 @@ export default function RelatoriosPage() {
                           className="transition-all duration-700"
                         />
                       )
-                      offset += strokeDash
-                      return el
                     })
                   })()}
                 </svg>

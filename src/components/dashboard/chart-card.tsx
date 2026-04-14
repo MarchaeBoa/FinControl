@@ -2,7 +2,6 @@
 
 import { type ReactNode } from "react"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
-import { cn } from "@/lib/utils"
 
 interface ChartCardProps {
   title: string
